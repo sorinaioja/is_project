@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+<style>
+body,h1,a.one {font-family: "Raleway", sans-serif}
+body, html {height: 100%}
+
+.bgimg {
+  background-image: url('../../../static/isproject/cool-background.jpg');
+  min-height: 100%;
+  background-position: center;
+  background-size: cover;
+  padding-bottom:100 px;
+}
+a {
+ font-size: 400%;
+}
+a.one:hover, a.one:active {
+text-decoration: none;
+  font-size: 500%;
+}
+</style>
+<div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
+
+  <div class="w3-display-position w3-padding " style="top:300px;left:350px">
+
+    <a class="one w3-animate-top  " href="{% url 'register_account' %}">APPLICANT</a>
+
+
+  </div>
+	 <div class="w3-display-position w3-padding " style="top:300px;right:350px">
+
+
+
+    <a class="one w3-animate-top  " href="{% url 'register_company' %}">COMPANY</a>
+
+
+  </div>
+
+
+</div>
+{% endblock content %}
