@@ -83,7 +83,6 @@ class AccountAuthenticationForm(forms.ModelForm):
 #             return account
 
 class UserUpdateForm(forms.ModelForm):
-
     class Meta:
         model = Account
         fields = ('username', 'email')
@@ -104,7 +103,6 @@ class UserUpdateForm(forms.ModelForm):
             return username
         raise forms.ValidationError('Username "%s" is already in use.' % username)
 
-
     def save(self, commit=True):
         account = super(UserUpdateForm, self).save(commit=False)
         account.username = self.cleaned_data['username']
@@ -113,29 +111,17 @@ class UserUpdateForm(forms.ModelForm):
             account.save()
         return account
 
-	password = forms.CharField(label='Password', widget=forms.PasswordInput)
-
-	class Meta:
-		model = Account
-		fields = ('email', 'password')
-
-	def clean(self):
-		if self.is_valid():
-			email = self.cleaned_data['email']
-			password = self.cleaned_data['password']
-			if not authenticate(email=email, password=password):
-				raise forms.ValidationError("Invalid login")
 
 class CompanyUpdateForm(forms.ModelForm):
-	name = forms.CharField(max_length=100, help_text='Name')
-	field = forms.CharField(max_length=100, help_text='Field')
-	about = forms.CharField(max_length=500, help_text='About')
-	class Meta:
-		model = Company
-		fields = [
-			'name',
-			'field',
-			'about',
-			'link'
-		]
+    name = forms.CharField(max_length=100, help_text='Name')
+    field = forms.CharField(max_length=100, help_text='Field')
+    about = forms.CharField(max_length=500, help_text='About')
 
+    class Meta:
+        model = Company
+        fields = [
+            'name',
+            'field',
+            'about',
+            'link'
+        ]
