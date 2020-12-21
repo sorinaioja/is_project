@@ -42,7 +42,7 @@
 								    {% if request.user.is_company %}
 									<a class="dropdown-item" href="{% url 'compprofile' %}">Account</a>
 								    {% else %}
-								    <a class="dropdown-item" href="#">Account</a>
+								    <a class="dropdown-item" href="{% url 'userprofile' %}">Account</a>
 								    {% endif %}
 
 									<a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
@@ -78,8 +78,9 @@
 								   {% if request.user.is_company %}
 									<a class="dropdown-item" href="{% url 'compprofile' %}">Account</a>
 								    {% else %}
-								    <a class="dropdown-item" href="#">Account</a>
+								    <a class="dropdown-item" href="{% url 'userprofile' %}">Account</a>
 								    {% endif %}
+
 								<a class="dropdown-item" href="logout/">Logout</a>
 
 						</div>
