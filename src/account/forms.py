@@ -67,3 +67,18 @@ class AccountAuthenticationForm(forms.ModelForm):
 			password = self.cleaned_data['password']
 			if not authenticate(email=email, password=password):
 				raise forms.ValidationError("Invalid login")
+
+class CompanyUpdateForm(forms.ModelForm):
+	name = forms.CharField(max_length=100, help_text='Name')
+	field = forms.CharField(max_length=100, help_text='Field')
+	about = forms.CharField(max_length=500, help_text='About')
+	class Meta:
+		model = Company
+		fields = [
+			'name',
+			'field',
+			'about',
+			'link'
+		]
+
+
