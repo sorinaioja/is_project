@@ -21,7 +21,9 @@ from account.views import (
     login_view,
     logout_view,
     # company_view,
+    userprofile_view,
     companyprofile_view,
+    edit_user_profile_view,
     profile,
 )
 
@@ -38,6 +40,9 @@ urlpatterns = [
     path('register_account/', register_view_Applicant, name='register_account'),
     path('register_company/', register_view_Company, name='register_company'),
     path('companies/',register_view_Applicant, name = 'companies'),
+    path('compprofile/', companyprofile_view, name='compprofile'),
+    path('userprofile/', userprofile_view, name='userprofile'),
+    path('update_user', edit_user_profile_view, name='update_user'),
     path('company_profile/', companyprofile_view, name='compprofile'),
     path('company_update/', profile, name='update_company'),
     path('present_companies/', present_companies_view, name='companies'),
