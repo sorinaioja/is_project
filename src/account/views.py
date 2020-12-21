@@ -2,97 +2,98 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate, logout
 
-from .forms import RegistrationForm, RegistrationFormApplicant,RegistrationFormCompany, AccountAuthenticationForm
-from account.models import Account, Company
-
+from .forms import RegistrationForm, RegistrationFormApplicant, RegistrationFormCompany, AccountAuthenticationForm, \
+    UserUpdateForm
+from .models import Account, Company
 
 
 def register_view_Applicant(request):
-	user = request.user
-	if user.is_authenticated:
-		return HttpResponse("You are already authenticated as " + str(user.email))
+    user = request.user
+    if user.is_authenticated:
+        return HttpResponse("You are already authenticated as " + str(user.email))
 
-
-	if request.POST:
-            form = RegistrationForm(request.POST)
-            applicant_form=RegistrationFormApplicant(request.POST)
-            if form.is_valid() and applicant_form.is_valid():
-                user = form.save()
-                applicant = applicant_form.save(commit=False)
-                user.refresh_from_db()
-                email = form.cleaned_data.get('email').lower()
-                raw_password = form.cleaned_data.get('password1')
-                user.is_applicant = True
-                user.save()
-                applicant.user = user
-                applicant.save()
-                account = authenticate(email=email, password=raw_password)
-                login(request, account)
-                # destination = kwargs.get("next")
-                # if destination:
-                #     return redirect(destination)
-                return redirect('home')
-            else:
-                form = RegistrationForm()
-                applicant_form = RegistrationFormApplicant()
-
-
-	else:
+    if request.POST:
+        form = RegistrationForm(request.POST)
+        applicant_form = RegistrationFormApplicant(request.POST)
+        if form.is_valid() and applicant_form.is_valid():
+            user = form.save()
+            applicant = applicant_form.save(commit=False)
+            user.refresh_from_db()
+            email = form.cleaned_data.get('email').lower()
+            raw_password = form.cleaned_data.get('password1')
+            user.is_applicant = True
+            user.save()
+            applicant.user = user
+            applicant.save()
+            account = authenticate(email=email, password=raw_password)
+            login(request, account)
+            # destination = kwargs.get("next")
+            # if destination:
+            #     return redirect(destination)
+            return redirect('home')
+        else:
             form = RegistrationForm()
             applicant_form = RegistrationFormApplicant()
-	return render(
-                request,
-                'account/register_account.html',
-                {'form': form, 'applicant_form': applicant_form}
-            )
+
+
+    else:
+        form = RegistrationForm()
+        applicant_form = RegistrationFormApplicant()
+    return render(
+        request,
+        'account/register_account.html',
+        {'form': form, 'applicant_form': applicant_form}
+    )
+
 
 def register_view_Company(request):
-	user = request.user
-	if user.is_authenticated:
-		return HttpResponse("You are already authenticated as " + str(user.email))
+    user = request.user
+    if user.is_authenticated:
+        return HttpResponse("You are already authenticated as " + str(user.email))
 
-
-	if request.POST:
-            form = RegistrationForm(request.POST)
-            company_form=RegistrationFormCompany(request.POST)
-            if form.is_valid() and company_form.is_valid():
-                user = form.save()
-                company = company_form.save(commit=False)
-                user.refresh_from_db()
-                email = form.cleaned_data.get('email').lower()
-                raw_password = form.cleaned_data.get('password1')
-                user.is_company = True
-                user.save()
-                company.user = user
-                company.save()
-                account = authenticate(email=email, password=raw_password)
-                login(request, account)
-                # destination = kwargs.get("next")
-                # if destination:
-                #     return redirect(destination)
-                return redirect('home')
-            else:
-                form = RegistrationForm()
-                company_form = RegistrationFormCompany()
-                return render(
-                    request,
-                    'account/register_company.html',
-                    {'form': form, 'company_form': company_form}
-                )
-
-
-	else:
+    if request.POST:
+        form = RegistrationForm(request.POST)
+        company_form = RegistrationFormCompany(request.POST)
+        if form.is_valid() and company_form.is_valid():
+            user = form.save()
+            company = company_form.save(commit=False)
+            user.refresh_from_db()
+            email = form.cleaned_data.get('email').lower()
+            raw_password = form.cleaned_data.get('password1')
+            user.is_company = True
+            user.save()
+            company.user = user
+            company.save()
+            account = authenticate(email=email, password=raw_password)
+            login(request, account)
+            # destination = kwargs.get("next")
+            # if destination:
+            #     return redirect(destination)
+            return redirect('home')
+        else:
             form = RegistrationForm()
             company_form = RegistrationFormCompany()
-	return render(
+            return render(
                 request,
                 'account/register_company.html',
                 {'form': form, 'company_form': company_form}
             )
 
+
+    else:
+        form = RegistrationForm()
+        company_form = RegistrationFormCompany()
+    return render(
+        request,
+        'account/register_company.html',
+        {'form': form, 'company_form': company_form}
+    )
+
+
 def register_view(request):
     context = {}
     return render(request, "account/register.html", context)
+
 
 def logout_view(request):
     logout(request)
@@ -137,6 +138,7 @@ def get_redirect_if_exists(request):
             redirect = str(request.GET.get("next"))
     return redirect
 
+
 # def company_view(request):
 # 	context = {
 # 		'companies': Company.objects.all(),
@@ -144,7 +146,6 @@ def get_redirect_if_exists(request):
 # 	return render(request,'account/companies.html', context)
 
 def account_view(request, *args, **kwargs):
-
     context = {}
     user_id = kwargs.get("user_id")
     try:
@@ -158,19 +159,37 @@ def account_view(request, *args, **kwargs):
         context['profile_image'] = account.profile_image.url
         context['hide_email'] = account.hide_email
 
-
         return render(request, "account/account.html", context)
+
 
 def userprofile_view(request):
     context = {}
     return render(request, "account/userprofile.html", context)
 
+
+def edit_user_profile_view(request):
+    if request.method == 'POST':
+        user_form = UserUpdateForm(request.POST, instance=request.user.applicant)
+        if user_form.is_valid():
+            user_form.save()
+            new_username = user_form.cleaned_data['username']
+            return redirect("userprofile")
+    else:
+        user_form = UserUpdateForm(instance=request.user.applicant)
+    context = {
+        'user_form': user_form
+    }
+    return render(request, 'account/update_user.html', context)
+
+
+
 def companyprofile_view(request):
     context = {}
     return render(request, "account/compprofile.html", context)
 
+
 def present_companies_view(request):
     context = {
-      'companies': Company.objects.all(),
+        'companies': Company.objects.all(),
     }
     return render(request, 'account/present_companies.html', context)
