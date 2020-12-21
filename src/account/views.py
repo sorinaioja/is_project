@@ -1,10 +1,10 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate, logout
-
-from .forms import RegistrationForm, RegistrationFormApplicant, RegistrationFormCompany, AccountAuthenticationForm, \
-    UserUpdateForm
-from .models import Account, Company
+from django.contrib.auth.forms import UserChangeForm
+from .forms import RegistrationForm, RegistrationFormApplicant, RegistrationFormCompany, AccountAuthenticationForm, UserUpdateForm, CompanyUpdateForm
+from account.models import Account, Company
 
 
 def register_view_Applicant(request):
@@ -193,3 +193,20 @@ def present_companies_view(request):
         'companies': Company.objects.all(),
     }
     return render(request, 'account/present_companies.html', context)
+
+@login_required
+def profile(request):
+    if request.method == 'POST':
+
+        c_form = CompanyUpdateForm(request.POST, instance=request.user.company)
+        if c_form.is_valid():
+            c_form.save()
+            return redirect("home")
+    else:
+        c_form = CompanyUpdateForm(instance=request.user.company)
+
+    context = {
+        'c_form': c_form
+    }
+
+    return render(request, 'account/update_company.html', context)

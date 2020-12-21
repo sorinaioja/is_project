@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% include 'account/comp_css.html' %}
+
+{% block content %}
+<style>
+    .container  {
+
+	  flex-shrink: 0;
+	  flex-grow: 1;
+	  display: flex;
+	  flex-direction: column;
+	  min-height: 80vh;
+	  justify-content: center;
+	  align-items: center
+}
+
+.wizard{
+ margin-top:50px;
+
+}
+
+.myButton {
+	box-shadow: 3px 4px 0px 0px #7c0da8;
+	background:linear-gradient(to bottom, #79bbff 5%, #e800f0 100%);
+	background-color:#79bbff;
+	border-radius:5px;
+	border:1px solid #e4cbf2;
+	display:flex;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	font-weight:bold;
+	padding:12px 44px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #c817eb;
+	position: relative;
+	left: 30%;
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #e800f0 5%, #79bbff 100%);
+	background-color:#e800f0;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+
+
+</style>
+
+<div class="container">
+        <div class="col-lg-8 pb-5">
+            <form class="row" method="POST"> {% csrf_token %}
+
+                <div class="col-md-10">
+                    <div class="form-group">
+
+                        {{c_form.}}
+                        <label for="account-fn">Company Name</label>
+                        <input class="form-control" type="text" id="account-fn" required="" name="name" value="{{request.user.company.name}}">
+
+                        <label for="account-email">E-mail Address</label>
+                        <input class="form-control"  name="email" type="email" id="account-email" value={{request.user.email}} disabled="">
+
+
+                        <label for="account-field" >Field</label>
+                        <input class="form-control" name="field" type="text" id="account-field" value="{{request.user.company.field}}" required="">
+
+
+                        <label for="account-about">About</label>
+                        <input class="form-control"  name="about" type="text" id="account-about" value="{{request.user.company.about}}" required="">
+
+                         <label for="account-about">Link</label>
+                        <input class="form-control" name="link" type="text" id="account-link"  required=""  value="{{request.user.company.link}}">
+
+                    </div>
+                </div>
+
+                <button class="myButton" type="submit">Update Profile</button>
+            </form>
+        </div>
+    </div>
+  {% endblock content %}
