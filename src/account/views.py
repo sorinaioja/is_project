@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserChangeForm
-from .forms import RegistrationForm, RegistrationFormApplicant, RegistrationFormCompany, AccountAuthenticationForm, UserUpdateForm, CompanyUpdateForm
+from .forms import RegistrationForm, RegistrationFormApplicant, RegistrationFormCompany, AccountAuthenticationForm, UserUpdateForm, CompanyUpdateForm, ApplicantUpdateForm
 from account.models import Account, Company
 
 
@@ -182,7 +182,6 @@ def edit_user_profile_view(request):
     return render(request, 'account/update_user.html', context)
 
 
-
 def companyprofile_view(request):
     context = {}
     return render(request, "account/compprofile.html", context)
@@ -210,3 +209,19 @@ def company_profile_update(request):
     }
 
     return render(request, 'account/update_company.html', context)
+
+def user_profile_update(request):
+    if request.method == 'POST':
+
+        c_form = ApplicantUpdateForm(request.POST, instance=request.user.applicant)
+        if c_form.is_valid():
+            c_form.save()
+            return redirect("home")
+    else:
+        c_form = CompanyUpdateForm(instance=request.user.applicant)
+
+    context = {
+        'c_form': c_form
+    }
+
+    return render(request, 'account/update_user.html', context)
