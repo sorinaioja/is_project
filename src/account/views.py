@@ -161,6 +161,10 @@ def account_view(request, *args, **kwargs):
 
         return render(request, "account/account.html", context)
 
+def userprofile_view(request):
+    context = {}
+    return render(request, "account/userprofile.html", context)
+
 def companyprofile_view(request):
     context = {}
     return render(request, "account/compprofile.html", context)
