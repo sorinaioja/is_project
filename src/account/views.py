@@ -169,13 +169,13 @@ def userprofile_view(request):
 
 def edit_user_profile_view(request):
     if request.method == 'POST':
-        user_form = UserUpdateForm(request.POST, instance=request.user.applicant)
+        user_form = UserUpdateForm(request.POST, instance=request.user)
         if user_form.is_valid():
             user_form.save()
             new_username = user_form.cleaned_data['username']
             return redirect("userprofile")
     else:
-        user_form = UserUpdateForm(instance=request.user.applicant)
+        user_form = UserUpdateForm(instance=request.user)
     context = {
         'user_form': user_form
     }
@@ -195,7 +195,7 @@ def present_companies_view(request):
     return render(request, 'account/present_companies.html', context)
 
 @login_required
-def profile(request):
+def company_profile_update(request):
     if request.method == 'POST':
 
         c_form = CompanyUpdateForm(request.POST, instance=request.user.company)
