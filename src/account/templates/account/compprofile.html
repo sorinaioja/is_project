@@ -4,98 +4,121 @@
 {% block content %}
 
 {% include 'account/comp_css.html' %}
+<style>
+
+.container  {
+  display: flex;
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 70%;
+  margin-top:90px;
 
 
-<div class="card w-75">
-  <div class="card-body">
+ flex-basis: auto;
+	  flex-shrink: 0;
+	  flex-grow: 1;
+	  display: flex;
+	  flex-direction: column;
+	  min-height: 80vh;
+}
 
-<div class="container-fluid">
-    <div class="row justify-content-center">
+.wizard{
+ margin-top:50px;
 
-        <div class="col-lg-4 pb-5">
+
+}
+.container .row {
+  margin: 0 auto;
+
+}
+
+
+  .myButton {
+	box-shadow: 3px 4px 0px 0px #7c0da8;
+	background:linear-gradient(to bottom, #79bbff 5%, #e800f0 100%);
+	background-color:#79bbff;
+	border-radius:5px;
+	border:1px solid #e4cbf2;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	font-weight:bold;
+	padding:12px 44px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #c817eb;
+	position: relative;
+	margin-top:50px;
+	width: 30%;
+
+
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #e800f0 5%, #79bbff 100%);
+	background-color:#e800f0;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+a{
+color:white;
+}
+.imagine {
+  width: 40%;
+  position:relative;
+  left: 80%;
+  top:30%;
+}
+</style>
+<div class=" container">
+
+
             <!-- Account Sidebar-->
+
             <div class="author-card pb-3">
-
                 <div class="author-card-profile">
-
                     <div class="author-card-details">
-                        <h3 class="author-card-name text-lg">{{request.user.username}}</h3><span class="author-card-position">Joined {{request.user.date_joined}}</span>
+                        <h3 class="author-card-name text-lg">{{request.user.company.name}}</h3><span class="author-card-position">Joined {{request.user.date_joined}}</span>
+
                     </div>
                 </div>
             </div>
+
             <div class="wizard">
                 <nav class="list-group list-group-flush">
-
-                        <div class="d-flex justify-content-between align-items-center">
                             <div><i class="fe-icon-heart mr-1 text-muted"></i>
 
-                                    <button type="button" class="btn btn-lg btn-primary" disabled> Post a job</button>
+                                    <button type="button" class=" myButton btn " style="margin-top:16px" > Post a job</button>
 
                             </div>
-                        </div>
 
-                        <div class="d-flex justify-content-between align-items-center">
                             <div><i class="fe-icon-tag mr-1 text-muted"></i>
-                                <button type="button" class="btn btn-lg btn-primary" disabled>Post an interview test</button>
+                                <button type="button" class=" myButton btn " style="margin-top:16px">Post an interview test</button>
                             </div>
-                        </div>
+                            <div><i class="fe-icon-tag mr-1 text-muted"></i>
+                                  <button class="myButton btn" type="submit" style="margin-top:16px"> <a href="{% url 'update_company' %}">Update Profile</a></button>
+                            </div>
 
+                            <img class="imagine"src="./../../static/isproject/set.png" />
                 </nav>
+
             </div>
-        </div>
+
+
+</div>
         <!-- Profile Settings-->
-        <div class="col-lg-8 pb-5">
-            <form class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="account-fn">Company Name</label>
-                        <input class="form-control" type="text" id="account-fn" required="" name="name">
-                    </div>
-                </div>
 
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="account-email">E-mail Address</label>
-                        <input class="form-control" type="email" id="account-email" value={{request.user.email}} disabled="">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="account-phone">Field</label>
-                        <input class="form-control" type="text" id="account-phone" required="">
-                    </div>
-                </div>
-                 <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="account-phone">About</label>
-                        <input class="form-control" type="text" id="account-phone"  required="">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="account-pass">New Password</label>
-                        <input class="form-control" type="password" id="account-pass">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="account-confirm-pass">Confirm Password</label>
-                        <input class="form-control" type="password" id="account-confirm-pass">
-                    </div>
-                </div>
-                <div class="col-12">
-                    <hr class="mt-2 mb-3">
-                    <div class="d-flex flex-wrap justify-content-between align-items-center">
 
-                        <button class="btn btn-style-1 btn-primary" type="button" data-toast="" data-toast-position="topRight" data-toast-type="success" data-toast-icon="fe-icon-check-circle" data-toast-title="Success!" data-toast-message="Your profile updated successfuly.">Update Profile</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
+
+
+
 </div>
   </div>
-</div>
+
 
 
 {% endblock content %}

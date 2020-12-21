@@ -1,4 +1,4 @@
-<script>
+<style>
 
 .widget-author {
   margin-bottom: 58px;
@@ -22,7 +22,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 50%;
   height: 100%;
   content: '';
   opacity: 0.5;
@@ -47,23 +47,36 @@
   vertical-align: middle;
 }
 .author-card .author-card-profile .author-card-avatar {
-  width: 85px;
+  width: 50px;
   border-radius: 50%;
   box-shadow: 0 8px 20px 0 rgba(0, 0, 0, .15);
   overflow: hidden;
 }
+.author-card{
+   color:white;
+   background-color:#6600cc;
+   border: solid 1px #555;
+    box-shadow: 10px -10px 5px  rgba(0,0,0,0.6);
+  -moz-box-shadow: 10px -10px 5px  rgba(0,0,0,0.6);
+  -webkit-box-shadow: 10px -10px 5px  rgba(0,0,0,0.6);
+  -o-box-shadow: 10px -10px 5px  rgba(0,0,0,0.6);
+  border-radius:25px;
+}
 .author-card .author-card-profile .author-card-avatar > img {
   display: block;
-  width: 100%;
+  width: 50%;
 }
 .author-card .author-card-profile .author-card-details {
   padding-top: 20px;
   padding-left: 15px;
 }
 .author-card .author-card-profile .author-card-name {
-  margin-bottom: 2px;
-  font-size: 14px;
+  margin-bottom: 10px;
+  margin-top:10px;
+  font-size: 30px;
   font-weight: bold;
+
+
 }
 .author-card .author-card-profile .author-card-position {
   display: block;
@@ -176,13 +189,14 @@ a.list-group-item, .list-group-item-action {
     content: '';
 }
 
-
-.container-fluid {
- flex-basis: auto;
-  flex-shrink: 0;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  min-height: 80vh;
+.card{
+  /* other base style */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
 }
-</script>
+
+
+
+</style>

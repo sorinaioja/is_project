@@ -23,6 +23,8 @@ from account.views import (
     # company_view,
     userprofile_view,
     companyprofile_view,
+    edit_user_profile_view,
+    profile,
 )
 
 urlpatterns = [
@@ -40,6 +42,9 @@ urlpatterns = [
     path('companies/',register_view_Applicant, name = 'companies'),
     path('compprofile/', companyprofile_view, name='compprofile'),
     path('userprofile/', userprofile_view, name='userprofile'),
+    path('update_user', edit_user_profile_view, name='update_user'),
+    path('company_profile/', companyprofile_view, name='compprofile'),
+    path('company_update/', profile, name='update_company'),
     path('present_companies/', present_companies_view, name='companies'),
     path('password_change/done/',
          auth_views.PasswordChangeDoneView.as_view(template_name='password_reset/password_change_done.html'),
