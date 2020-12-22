@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'chat',
     'channels',
     'job',
+    'question',
 
 ]
 
