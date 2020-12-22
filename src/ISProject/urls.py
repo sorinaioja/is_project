@@ -2,6 +2,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+
+from job.views import job_create_view
 from personal.views import (home_screen_view)
 from account.views import register_view_Applicant,present_companies_view
 from chat.views import (index)
@@ -50,6 +52,7 @@ urlpatterns = [
     path('company_profile/', companyprofile_view, name='compprofile'),
     path('company_update/', company_profile_update, name='update_company'),
     path('present_companies/', present_companies_view, name='companies'),
+    path('job_detail/', job_create_view, name="job_detail"),
     path('password_change/done/',
          auth_views.PasswordChangeDoneView.as_view(template_name='password_reset/password_change_done.html'),
          name='password_change_done'),

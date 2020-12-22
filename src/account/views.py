@@ -3,7 +3,9 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserChangeForm
+
 from .forms import RegistrationForm, RegistrationFormApplicant, RegistrationFormCompany, AccountAuthenticationForm, UserUpdateForm, CompanyUpdateForm, ApplicantUpdateForm
+
 from account.models import Account, Company
 from django.shortcuts import render, get_object_or_404
 
@@ -193,6 +195,7 @@ def present_companies_view(request):
         'companies': Company.objects.all(),
     }
     return render(request, 'account/present_companies.html', context)
+
 
 @login_required
 def company_profile_update(request):
