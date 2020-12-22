@@ -8,6 +8,7 @@ from personal.views import (home_screen_view)
 from account.views import register_view_Applicant,present_companies_view
 from chat.views import (index)
 from chat.views import (index)
+from account import views
 
 from django.contrib.auth import views as auth_views
 from django.conf.urls import include
@@ -27,13 +28,15 @@ from account.views import (
     companyprofile_view,
     edit_user_profile_view,
     company_profile_update,
+    user_profile_update,
+    one_company_detail,
 )
 
 urlpatterns = [
 
     path('', home_screen_view, name='home'),
     path('', index, name='index'),
-    #path('account/', include('account.urls', namespace='account')),
+
     path('admin/', admin.site.urls),
     path('chat/', include('chat.urls')),
     path('login/', login_view, name="login"),  # TODO: ADD THIS LINE.
@@ -45,6 +48,7 @@ urlpatterns = [
     path('compprofile/', companyprofile_view, name='compprofile'),
     path('userprofile/', userprofile_view, name='userprofile'),
     path('update_user', edit_user_profile_view, name='update_user'),
+    path('user_update', user_profile_update, name='user_update'),
     path('company_profile/', companyprofile_view, name='compprofile'),
     path('company_update/', company_profile_update, name='update_company'),
     path('present_companies/', present_companies_view, name='companies'),
@@ -67,6 +71,7 @@ urlpatterns = [
          auth_views.PasswordResetCompleteView.as_view(template_name='password_reset/password_reset_complete.html'),
          name='password_reset_complete'),
 
+    path('company/<int:pk>/', views.one_company_detail, name='company_detail'),
 ]
 
 if settings.DEBUG:

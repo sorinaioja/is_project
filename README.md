@@ -21,6 +21,12 @@ git commit - m "ce am facut mai exact"
 git push origin test-days
 
 
+21.12.2020
+
+Pagina principala user: 3 butoane - view companies, interview questions, view tests
+Pagina principala companie: view applicants + CVs + review, create test, jobs 
+
+
 CARRY-ER(Educational Research) 
 
 *Learn how to prepare for a job interview*

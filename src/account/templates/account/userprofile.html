@@ -5,6 +5,46 @@
 
 {% include 'account/user_css.html' %}
 
+<style>
+.myButton {
+	box-shadow: 3px 4px 0px 0px #7c0da8;
+	background:linear-gradient(to bottom, #79bbff 5%, #e800f0 100%);
+	background-color:#79bbff;
+	border-radius:5px;
+	border:1px solid #e4cbf2;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	font-weight:bold;
+	padding:12px 44px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #c817eb;
+	position: relative;
+	margin-top:50px;
+	width: 30%;
+
+
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #e800f0 5%, #79bbff 100%);
+	background-color:#e800f0;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+a{
+color:white;
+}
+.imagine {
+  width: 40%;
+  position:relative;
+  left: 80%;
+  top:30%;
+}
+</style>
 
 <div class="card w-75">
   <div class="card-body">
@@ -25,13 +65,18 @@
             </div>
 
         </div>
+
+        <div class="wizard">
+            <img class="imagine"src="./../../static/isproject/set.png" />
+
+        </div>
         <!-- Profile Settings-->
         <div class="col-lg-8 pb-5">
             <form class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="account-fn">Username</label>
-                        <input class="form-control" type="text" id="account-fn" required="" name="name">
+                        <input class="form-control" type="text" id="account-fn" required="" name="name" value={{request.user.username}} disabled="">
                     </div>
                 </div>
 
@@ -43,34 +88,24 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="account-phone">First Name</label>
-                        <input class="form-control" type="text" id="account-phone" required="">
+                        <label for="account-first_name">First Name</label>
+                        <input class="form-control" type="text" id="account-first_name" required="" value={{request.user.applicant.first_name}} disabled="">
                     </div>
                 </div>
                  <div class="col-md-6">
                     <div class="form-group">
-                        <label for="account-phone">Last Name</label>
-                        <input class="form-control" type="text" id="account-phone"  required="">
+                        <label for="account-last_name">Last Name</label>
+                        <input class="form-control" type="text" id="account-last_name"  required="" value={{request.user.applicant.last_name}} disabled="">
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="account-pass">New Password</label>
-                        <input class="form-control" type="password" id="account-pass">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="account-confirm-pass">Confirm Password</label>
-                        <input class="form-control" type="password" id="account-confirm-pass">
-                    </div>
-                </div>
+
                 <div class="col-12">
                     <hr class="mt-2 mb-3">
                     <div class="d-flex flex-wrap justify-content-between align-items-center">
 
-                        <button class="btn btn-style-1 btn-primary" type="button" data-toast="" data-toast-position="topRight" data-toast-type="success" data-toast-icon="fe-icon-check-circle" data-toast-title="Success!" data-toast-message="Your profile updated successfuly.">Update Profile</button>
-                        <button class="mt-4 btn btn-primary" href="{% url 'update_user'%}">Update</button>
+<!--                        <button class="btn btn-style-1 btn-primary" type="submit" data-toast="" data-toast-position="topRight" data-toast-type="success" data-toast-icon="fe-icon-check-circle" data-toast-title="Success!" data-toast-message="Your profile updated successfuly." > <a href="{% url 'update_user'%}">Update Profile</a></button>-->
+                        <button class="myButton btn-style-1 btn-primary" type="submit" style="margin-top:16px"> <a href="{% url 'update_user' %}">Update Profile</a></button>
+<!--                        <button class="myButton" type="submit">Update Profile</button>-->
                     </div>
 
 
