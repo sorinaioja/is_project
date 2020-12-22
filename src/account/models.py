@@ -104,6 +104,8 @@ class Company(models.Model):
     field = models.CharField(max_length=100, blank=True)
     about = models.CharField(max_length=500, blank=True)
     link = models.CharField(max_length=200, blank=True, null=True)
+    header_image = models.ImageField(null=True, blank=True, upload_to='company_image')
+
 
     def __str__(self):
         return self.user.username
