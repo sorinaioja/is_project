@@ -5,6 +5,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserChangeForm
 from .forms import RegistrationForm, RegistrationFormApplicant, RegistrationFormCompany, AccountAuthenticationForm, UserUpdateForm, CompanyUpdateForm, ApplicantUpdateForm
 from account.models import Account, Company
+from django.shortcuts import render, get_object_or_404
 
 
 def register_view_Applicant(request):
@@ -210,6 +211,7 @@ def company_profile_update(request):
 
     return render(request, 'account/update_company.html', context)
 
+
 def user_profile_update(request):
     if request.method == 'POST':
 
@@ -225,3 +227,8 @@ def user_profile_update(request):
     }
 
     return render(request, 'account/update_user.html', context)
+
+
+def one_company_detail(request,pk):
+    comp = get_object_or_404(Company, pk=pk)
+    return render(request, 'account/company_detail.html', {'company': comp})
