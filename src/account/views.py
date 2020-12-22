@@ -3,7 +3,8 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserChangeForm
-from .forms import RegistrationForm, RegistrationFormApplicant, RegistrationFormCompany, AccountAuthenticationForm, UserUpdateForm, CompanyUpdateForm
+from .forms import RegistrationForm, RegistrationFormApplicant, RegistrationFormCompany, AccountAuthenticationForm, \
+    UserUpdateForm, CompanyUpdateForm
 from account.models import Account, Company
 
 
@@ -182,7 +183,6 @@ def edit_user_profile_view(request):
     return render(request, 'account/update_user.html', context)
 
 
-
 def companyprofile_view(request):
     context = {}
     return render(request, "account/compprofile.html", context)
@@ -193,6 +193,7 @@ def present_companies_view(request):
         'companies': Company.objects.all(),
     }
     return render(request, 'account/present_companies.html', context)
+
 
 @login_required
 def company_profile_update(request):
