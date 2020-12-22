@@ -17,6 +17,8 @@ from personal.views import (
 	home_screen_view
 )
 
+from question.views import (questions_view)
+
 from account.views import (
     register_view_Applicant,
     register_view_Company,
@@ -72,6 +74,7 @@ urlpatterns = [
          name='password_reset_complete'),
 
     path('company/<int:pk>/', views.one_company_detail, name='company_detail'),
+    path('questions/', questions_view, name='questions'),
 ]
 
 if settings.DEBUG:
