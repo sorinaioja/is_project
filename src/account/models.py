@@ -16,7 +16,6 @@ class MyAccountManager(BaseUserManager):
         if not username:
             raise ValueError('Users must have a username')
 
-
         user = self.model(
             email=self.normalize_email(email),
             username=username,
@@ -38,7 +37,6 @@ class MyAccountManager(BaseUserManager):
         user.is_superuser = True
         user.save(using=self._db)
         return user
-
 
 
 def get_profile_image_filepath(self, filename):
@@ -84,7 +82,8 @@ class Account(AbstractBaseUser):
         return True
 
     def set_applicant(self):
-        self.is_applicant=True
+        self.is_applicant = True
+
 
 class Applicant(models.Model):
     user = models.OneToOneField(Account, on_delete=models.CASCADE)
@@ -98,18 +97,19 @@ class Applicant(models.Model):
 
 
 class Company(models.Model):
-
     user = models.OneToOneField(Account, on_delete=models.CASCADE)
     user.is_company = True
-    cip = models.AutoField(unique=True,primary_key=True)  # unique physician identification number
+    cip = models.AutoField(unique=True, primary_key=True)  # unique physician identification number
     name = models.CharField(max_length=100, blank=True)
     field = models.CharField(max_length=100, blank=True)
     about = models.CharField(max_length=500, blank=True)
     link = models.CharField(max_length=200, blank=True, null=True)
     header_image = models.ImageField(null=True, blank=True, upload_to='company_image')
 
+
     def __str__(self):
         return self.user.username
+
 
 # = models.CharField(max_length=20)
 # days_available = models.DateTimeField(null=True)
@@ -122,7 +122,6 @@ def create_user_profile(sender, instance, created, **kwargs):
             Applicant.objects.create(user=instance)
         # elif instance.is_company:
         #     Company.objects.create(user=instance)
-
 
 # @receiver(post_save, sender=Account)
 # def save_user_profile(sender, instance, **kwargs):
