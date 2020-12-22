@@ -1,9 +1,10 @@
 from django.urls import path
-
+from account import views
 from account.views import (
 	account_view,
    register_view_Applicant,
   register_view_Company,
+
 )
 
 app_name = 'account'
