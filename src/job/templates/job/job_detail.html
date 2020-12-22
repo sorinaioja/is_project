@@ -9,7 +9,7 @@
 	  flex-grow: 1;
 	  display: flex;
 	  flex-direction: column;
-	  min-height: 80vh;
+	  min-height: 100vh;
 	  justify-content: center;
 	  align-items: center
 }
@@ -46,7 +46,19 @@
 	top:1px;
 }
 
+.imagine {
+  width: 30%;
+  position:absolute;
+  left: 70%;
+}
 
+.imagine2 {
+  width: 10%;
+  height: 14%;
+  position:absolute;
+  left: 10%;
+  top: 10%;
+}
 
 </style>
 
@@ -66,17 +78,17 @@
 
 
                         <label for="account-field" >Job description</label>
-                        <input class="form-control" name="job_description" type="text" id="account-field"  required="">
+                        <textarea class="form-control" name="job_description" id="account-field"  required=""></textarea>
 
 
                         <label for="account-about">Work time</label>
                         <input class="form-control"  name="work_time" type="text" id="account-about"  required="">
 
                          <label for="account-q">Qualifications</label>
-                        <input class="form-control" name="qualifications" type="text" id="account-q"  required=""  >
+                        <textarea class="form-control" name="qualifications"  id="account-q"  required=""  ></textarea>
 
                         <label for="account-b">Benefits</label>
-                        <input class="form-control" name="benefits" type="text" id="account-b"  required=""  >
+                        <textarea class="form-control" name="benefits"  id="account-b"  required=""  > </textarea>
 
                     </div>
                 </div>
@@ -84,5 +96,9 @@
                 <button class="myButton" type="submit">Create job</button>
             </form>
         </div>
+     <img class="imagine"src="./../../static/isproject/strategist.png" />
+
     </div>
+
+
   {% endblock content %}

@@ -69,8 +69,8 @@ color:white;
 }
 .imagine {
   width: 40%;
-  position:relative;
-  left: 80%;
+  position:absolute;
+  left: 60%;
   top:30%;
 }
 </style>
@@ -92,7 +92,7 @@ color:white;
                 <nav class="list-group list-group-flush">
                             <div><i class="fe-icon-heart mr-1 text-muted"></i>
 
-                                    <button type="button" class=" myButton btn " style="margin-top:16px" > Post a job</button>
+                                <a href="{% url 'job_detail' %}"><button type="button" class=" myButton btn " style="margin-top:16px" >Post a job</button></a>
 
                             </div>
 
@@ -100,7 +100,7 @@ color:white;
                                 <button type="button" class=" myButton btn " style="margin-top:16px">Post an interview test</button>
                             </div>
                             <div><i class="fe-icon-tag mr-1 text-muted"></i>
-                                  <button class="myButton btn" type="submit" style="margin-top:16px"> <a href="{% url 'update_company' %}">Update Profile</a></button>
+                                <a href="{% url 'update_company' %}">  <button class="myButton btn" type="submit" style="margin-top:16px"> Update Profile</button></a>
                             </div>
 
                             <img class="imagine"src="./../../static/isproject/set.png" />
