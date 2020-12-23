@@ -17,7 +17,7 @@ from personal.views import (
 	home_screen_view
 )
 
-from question.views import (questions_view)
+from question.views import (questions_view, question_create_view)
 
 from account.views import (
     register_view_Applicant,
@@ -55,6 +55,7 @@ urlpatterns = [
     path('company_update/', company_profile_update, name='update_company'),
     path('present_companies/', present_companies_view, name='companies'),
     path('job_detail/', job_create_view, name="job_detail"),
+    path('question_create/', question_create_view, name='question_create'),
     path('job_presentation/', present_job_view, name='job_presentation'),
     path('job_delete/<int:pk>', delete_jobs, name='job_delete'),
 
