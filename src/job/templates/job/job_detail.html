@@ -77,8 +77,8 @@
                         <input class="form-control"  name="location" type="text" id="account-email" required="">
 
 
-                        <label for="account-field" >Job description</label>
-                        <textarea class="form-control" name="job_description" id="account-field"  required=""></textarea>
+                        <label for="account-d" >Job description</label>
+                        <textarea class="form-control" name="job_description" id="account-d"  required=""></textarea>
 
 
                         <label for="account-about">Work time</label>
@@ -100,5 +100,17 @@
 
     </div>
 
+<script>
+
+ var $txtBox = $('#account-d');
+
+$txtBox.keyup(function(){
+    $('p.msg').text($txtBox.val());
+}).trigger('keyup')
+
+
+</script>
+
 
   {% endblock content %}
+

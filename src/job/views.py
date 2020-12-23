@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from account.models import Company
 from .forms import JobForm
@@ -32,3 +32,21 @@ def job_create_view(request):
         'j_form': j_form
     }
     return render(request, "job/job_detail.html", context)
+
+
+def present_job_view(request):
+    context = {
+        'jobs': Job.objects.all(),
+        'Job': Job,
+    }
+    return render(request, 'job/view_jobs.html', context)
+
+
+def delete_jobs(request, pk):
+    obj = get_object_or_404(Job, pk=pk)
+    obj.delete();
+    return redirect("home")
+    return render(request, 'job/view_jobs.html')
+
+
+

@@ -52,7 +52,7 @@ margin:0.4em auto;
 
     <h1 class="w3-animate-top w3-center w3-xxlarge">CARRY - Educational Research</h1>
    {% if request.user.is_company %}
-    <a href="" class="button1" class="w3-animate-top w3-center">View jobs </a>
+    <a href="{% url 'job_presentation' %}" class="button1" class="w3-animate-top w3-center">View jobs </a>
     <a href="" class="button1"  class="w3-animate-top w3-center ">View applicants </a>
       {% else %}
       <a href="{% url 'companies' %}" class="button1" class="w3-animate-top w3-center">companies</a>
