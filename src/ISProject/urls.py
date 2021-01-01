@@ -18,6 +18,7 @@ from personal.views import (
 )
 
 from question.views import (questions_view, question_create_view)
+from forum.views import add_in_forum, present_forum_view
 
 from account.views import (
     register_view_Applicant,
@@ -33,6 +34,7 @@ from account.views import (
     user_profile_update,
     one_company_detail,
 )
+
 
 urlpatterns = [
 
@@ -58,6 +60,8 @@ urlpatterns = [
     path('question_create/', question_create_view, name='question_create'),
     path('job_presentation/', present_job_view, name='job_presentation'),
     path('job_delete/<int:pk>', delete_jobs, name='job_delete'),
+    path('addInForum/', add_in_forum, name='add_in_forum'),
+    path('viewDiscussions/', present_forum_view, name='present_forum_view'),
 
     path('password_change/done/',
          auth_views.PasswordChangeDoneView.as_view(template_name='password_reset/password_change_done.html'),

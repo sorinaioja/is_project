@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+
+<div class="container my-0">
+  <div class="column d-flex justify-content-center">
+    	<div class="col-12">
+            <div id="carousel" class="carousel slide" data-ride="carousel">
+
+              <ol class="carousel-indicators">
+                  {% for forum in forums%}
+                <li data-target="#carousel" data-slide-to='forum.id' class="active"></li>
+                    {% endfor %}
+              </ol>
+                 {% for forum in forums %}
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                      <div class="card mr-5 mt-4 mb-4 ">
+
+                        <div class="card-body">
+                            <h5 class="card-title">{{forum.topic}} by <a href= "">{{forum.applicant.user}}</a></h5>
+                            <p class="card-text">{{forum.description}}</p>
+                            <h5 class="card-field">{{forum.link}}</h5>
+
+
+                        </div>
+                      </div>
+                </div>
+              </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+
+{% endblock content %}
