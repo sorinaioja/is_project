@@ -23,7 +23,7 @@ git push origin test-days
 
 21.12.2020
 
-Pagina principala user: 3 butoane - view companies, interview questions, view tests
+Pagina principala user: 4 butoane - view companies, interview questions, view tests, forum
 Pagina principala companie: view applicants + CVs + review, create test, jobs 
 
 
