@@ -3,7 +3,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-from job.views import job_create_view, present_job_view, delete_jobs
+from job.views import job_create_view, present_job_view, delete_jobs, user_job_view, job_application_view
 from personal.views import (home_screen_view)
 from account.views import register_view_Applicant,present_companies_view
 from chat.views import (index)
@@ -57,12 +57,13 @@ urlpatterns = [
     path('company_update/', company_profile_update, name='update_company'),
     path('present_companies/', present_companies_view, name='companies'),
     path('job_detail/', job_create_view, name="job_detail"),
+    path('job_application/', job_application_view, name="job_application"),
     path('question_create/', question_create_view, name='question_create'),
     path('job_presentation/', present_job_view, name='job_presentation'),
+    path('job_presentation_user/', user_job_view, name='job_presentation_user'),
     path('job_delete/<int:pk>', delete_jobs, name='job_delete'),
     path('addInForum/', add_in_forum, name='add_in_forum'),
     path('viewDiscussions/', present_forum_view, name='present_forum_view'),
-
     path('password_change/done/',
          auth_views.PasswordChangeDoneView.as_view(template_name='password_reset/password_change_done.html'),
          name='password_change_done'),

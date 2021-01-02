@@ -5,6 +5,8 @@ from .forms import JobForm
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from .models import Job
+
+
 # Create your views here.
 
 
@@ -14,7 +16,6 @@ def job_create_view(request):
         j_form = JobForm(request.POST)
 
         if j_form.is_valid():
-
             title = request.POST.get('title')
             location = request.POST.get('location')
             work_time = request.POST.get('work_time')
@@ -23,7 +24,9 @@ def job_create_view(request):
             benefits = request.POST.get('benefits')
             company = request.user.company
             j_form.save(commit=False)
-            j_form = Job.objects.create(title=title, location=location,work_time=work_time,job_description=job_description, qualifications=qualifications, benefits=benefits,company=company)
+            j_form = Job.objects.create(title=title, location=location, work_time=work_time,
+                                        job_description=job_description, qualifications=qualifications,
+                                        benefits=benefits, company=company)
             j_form.save()
             return redirect("home")
     else:
@@ -34,6 +37,30 @@ def job_create_view(request):
     return render(request, "job/job_detail.html", context)
 
 
+def job_application_view(request):
+    if request.POST:
+
+        j_form = JobForm(request.POST)
+
+        if j_form.is_valid():
+            name = request.POST.get('name')
+            email = request.POST.get('email')
+            phone_number = request.POST.get('phone_number')
+            applying_position = request.POST.get('applying_position ')
+            start_date = request.POST.get('start_date')
+            j_form.save(commit=False)
+            j_form = Job.objects.create(name=name, email=email, phone_number=phone_number,
+                                        applying_position=applying_position, start_date=start_date, )
+            j_form.save()
+            return redirect("home")
+    else:
+        j_form = JobForm()
+    context = {
+        'j_form': j_form
+    }
+    return render(request, "job/job_application.html", context)
+
+
 def present_job_view(request):
     context = {
         'jobs': Job.objects.all(),
@@ -42,11 +69,16 @@ def present_job_view(request):
     return render(request, 'job/view_jobs.html', context)
 
 
+def user_job_view(request):
+    context = {
+        'jobs': Job.objects.all(),
+        'Job': Job,
+    }
+    return render(request, 'job/user_view_jobs.html', context)
+
+
 def delete_jobs(request, pk):
     obj = get_object_or_404(Job, pk=pk)
     obj.delete();
     return redirect("home")
     return render(request, 'job/view_jobs.html')
-
-
-
