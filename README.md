@@ -32,14 +32,24 @@ CARRY-ER(Educational Research)
 *Learn how to prepare for a job interview*
 
 Already implemented - design 
+
                     - register for 2 types of users
+                    
                     - login/logout
+                    
                     - chat
+                    
                     - company view
+                    
                     - update user profile & company profile
+                    
                     - reset password
+                    
                     - post an interview question(company) & view interview questions(users)
+                    
                     - post a job(company) & view jobs
+                    
                     - post something on a forum and view discussions(for user)
+                    
                     
              
