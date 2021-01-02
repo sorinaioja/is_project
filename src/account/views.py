@@ -6,7 +6,7 @@ from django.contrib.auth.forms import UserChangeForm
 
 from .forms import RegistrationForm, RegistrationFormApplicant, RegistrationFormCompany, AccountAuthenticationForm, UserUpdateForm, CompanyUpdateForm, ApplicantUpdateForm
 
-from account.models import Account, Company
+from account.models import Account, Company, Applicant
 from django.shortcuts import render, get_object_or_404
 
 
@@ -235,3 +235,8 @@ def user_profile_update(request):
 def one_company_detail(request,pk):
     comp = get_object_or_404(Company, pk=pk)
     return render(request, 'account/company_detail.html', {'company': comp})
+
+
+
+
+

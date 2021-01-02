@@ -126,6 +126,7 @@ class CompanyUpdateForm(forms.ModelForm):
             'link'
         ]
 
+
 class ApplicantUpdateForm(forms.ModelForm):
     first_name = forms.CharField(max_length=100, help_text='First Name')
     last_name = forms.CharField(max_length=100, help_text='Last Name')
@@ -136,3 +137,6 @@ class ApplicantUpdateForm(forms.ModelForm):
             'first_name',
             'last_name'
         ]
+
+
+

@@ -1,11 +1,10 @@
 from django import forms
 
 from account.models import Company
-from .models import Job
+from .models import Job, JobApplication
 
 
 class JobForm(forms.ModelForm):
-
     class Meta:
         model = Job
         fields = [
@@ -17,3 +16,14 @@ class JobForm(forms.ModelForm):
             'benefits',
         ]
 
+
+class JobFormApplication(forms.ModelForm):
+    class Meta:
+        model = JobApplication
+        fields = [
+            'name',
+            'email',
+            'phone_number',
+            'applying_position',
+            'start_date',
+        ]

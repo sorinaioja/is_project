@@ -14,5 +14,13 @@ class Job(models.Model):
     benefits = models.TextField(blank=True, null=True)
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
 
+class JobApplication(models.Model):
+    name = models.CharField(max_length=100, blank=True)
+    email = models.CharField(max_length=50, blank=True)
+    phone_number = models.CharField(max_length=10, blank=True)
+    applying_position = models.CharField(max_length=50, blank=True)
+    start_date = models.TextField(blank=True, null=True)
+
+
 
 
