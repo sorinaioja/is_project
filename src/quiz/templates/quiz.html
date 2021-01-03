@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% include 'account/comp_css.html' %}
+
+{% block content %}
+<style>
+<!--    .container  {-->
+
+<!--	  flex-shrink: 0;-->
+<!--	  flex-grow: 1;-->
+<!--	  display: flex;-->
+<!--	  flex-direction: column;-->
+<!--	  min-height: 100vh;-->
+<!--	  justify-content: center;-->
+<!--	  align-items: center-->
+<!--}-->
+
+<!--.wizard{-->
+<!-- margin-top:50px;-->
+
+<!--}-->
+
+<!--.myButton {-->
+<!--	box-shadow: 3px 4px 0px 0px #7c0da8;-->
+<!--	background:linear-gradient(to bottom, #79bbff 5%, #e800f0 100%);-->
+<!--	background-color:#79bbff;-->
+<!--	border-radius:5px;-->
+<!--	border:1px solid #e4cbf2;-->
+<!--	display:flex;-->
+<!--	cursor:pointer;-->
+<!--	color:#ffffff;-->
+<!--	font-family:Arial;-->
+<!--	font-size:17px;-->
+<!--	font-weight:bold;-->
+<!--	padding:12px 44px;-->
+<!--	text-decoration:none;-->
+<!--	text-shadow:0px 1px 0px #c817eb;-->
+<!--	position: relative;-->
+<!--	left: 30%;-->
+<!--}-->
+<!--.myButton:hover {-->
+<!--	background:linear-gradient(to bottom, #e800f0 5%, #79bbff 100%);-->
+<!--	background-color:#e800f0;-->
+<!--}-->
+<!--.myButton:active {-->
+<!--	position:relative;-->
+<!--	top:1px;-->
+<!--}-->
+
+<!--.imagine {-->
+<!--  width: 30%;-->
+<!--  position:absolute;-->
+<!--  left: 70%;-->
+<!--}-->
+
+<!--.imagine2 {-->
+<!--  width: 10%;-->
+<!--  height: 14%;-->
+<!--  position:absolute;-->
+<!--  left: 10%;-->
+<!--  top: 10%;-->
+<!--}-->
+
+
+</style>
+
+
+<br>
+<br>
+<form action="" method="POST" id="quiz"> {% csrf_token %}
+{% for question,field in content %}
+<div class='container'>
+	<div class="row justify-content-center">
+		<div class="col-mx-auto">
+			<div class="card bg-white text-dark" style="width: 40rem;">
+			  	<div class="card-body">
+			    	<center><h5 class="card-title">{{ forloop.counter }}.{{ question.question | linebreaksbr }}</h5></center>
+
+					{% load crispy_forms_tags %}
+
+					<center>{{ field | as_crispy_field | safe }}</center>
+			 	</div>
+			</div>
+		</div>
+	</div>
+</div>
+<br>
+{% endfor %}
+<center><input type="submit" value="Submit" class="btn btn-primary"></center>
+</form>
+<br>
+<br>
+
+
+{% endblock content %}

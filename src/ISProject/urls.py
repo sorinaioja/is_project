@@ -18,6 +18,7 @@ from personal.views import (
 )
 
 from question.views import (questions_view, question_create_view)
+from quiz.views import (quiz_create_view,quiz_question_create_view,present_quizzes_view,take_quiz_view,finish_view)
 from forum.views import add_in_forum, present_forum_view
 
 from account.views import (
@@ -83,6 +84,12 @@ urlpatterns = [
 
     path('company/<int:pk>/', views.one_company_detail, name='company_detail'),
     path('questions/', questions_view, name='questions'),
+
+    path('createQuiz/', quiz_create_view, name='createQuiz'),
+    path('createQuiz/<int:pk>/createQuestion/', quiz_question_create_view, name='createQuestion'),
+    path('viewQuizzez/',present_quizzes_view, name = 'tests'),
+    path('quiz/<int:pk>/', take_quiz_view, name='quiz'),
+    path('finish/<int:score>/<int:total>', finish_view, name='finish'),
 ]
 
 if settings.DEBUG:
