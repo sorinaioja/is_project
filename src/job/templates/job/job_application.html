@@ -64,7 +64,7 @@
 
 <div class="container">
         <div class="col-lg-8 pb-5">
-            <form class="row" method="POST"> {% csrf_token %}
+            <form class="row" method="POST" enctype ="multipart/form-data"> {% csrf_token %}
 
                 <div class="col-md-10">
                     <div class="form-group">
@@ -80,18 +80,19 @@
                         <label for="account-d" >Phone Number</label>
                         <textarea class="form-control" name="phone_number" id="account-d"  required=""></textarea>
 
-
-                        <label for="account-about">Applying for position</label>
-                        <input class="form-control"  name="applying_position" type="text" id="account-about"  required="">
-
                          <label for="account-q">When can you start?</label>
                         <textarea class="form-control" name="start_date"  id="account-q"  required=""  ></textarea>
 
 
-                    </div>
-                </div>
+                        <input type="file" name="display_CV">
+<!--                        <button type="submit">Upload file</button>-->
+                        <button class="myButton" type="submit">Submit</button>
 
-                <button class="myButton" type="submit">Submit</button>
+
+                    </div>
+
+                </div>
+<!--                <button class="myButton" type="submit">Submit</button>-->
             </form>
         </div>
      <img class="imagine"src="./../../static/isproject/strategist.png" />

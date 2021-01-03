@@ -1,10 +1,11 @@
 from django.shortcuts import render, get_object_or_404
+from django.core.files.storage import FileSystemStorage
 
 from account.models import Company
-from .forms import JobForm
+from .forms import JobForm, JobFormApplication
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from .models import Job
+from .models import Job, JobApplication
 
 
 # Create your views here.
@@ -40,17 +41,20 @@ def job_create_view(request):
 def job_application_view(request):
     if request.POST:
 
-        j_form = JobForm(request.POST)
+        j_form = JobFormApplication(request.POST, request.FILES)
 
         if j_form.is_valid():
             name = request.POST.get('name')
             email = request.POST.get('email')
             phone_number = request.POST.get('phone_number')
-            applying_position = request.POST.get('applying_position ')
             start_date = request.POST.get('start_date')
+            display_CV = request.FILES['display_CV']
+            print(display_CV.name)
+            print(display_CV.size)
+            fs = FileSystemStorage()
+            fs.save(display_CV.name, display_CV)
             j_form.save(commit=False)
-            j_form = Job.objects.create(name=name, email=email, phone_number=phone_number,
-                                        applying_position=applying_position, start_date=start_date, )
+            j_form = JobApplication.objects.create(name=name, email=email, phone_number=phone_number, start_date=start_date, display_CV=display_CV)
             j_form.save()
             return redirect("home")
     else:
