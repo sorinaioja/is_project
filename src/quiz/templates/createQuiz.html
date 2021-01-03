@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% include 'account/comp_css.html' %}
+
+{% block content %}
+<style>
+    .container  {
+
+	  flex-shrink: 0;
+	  flex-grow: 1;
+	  display: flex;
+	  flex-direction: column;
+	  min-height: 100vh;
+	  justify-content: center;
+	  align-items: center
+}
+
+.wizard{
+ margin-top:50px;
+
+}
+
+.myButton {
+	box-shadow: 3px 4px 0px 0px #7c0da8;
+	background:linear-gradient(to bottom, #79bbff 5%, #e800f0 100%);
+	background-color:#79bbff;
+	border-radius:5px;
+	border:1px solid #e4cbf2;
+	display:flex;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	font-weight:bold;
+	padding:12px 44px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #c817eb;
+	position: relative;
+	left: 30%;
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #e800f0 5%, #79bbff 100%);
+	background-color:#e800f0;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+.imagine {
+  width: 30%;
+  position:absolute;
+  left: 70%;
+}
+
+.imagine2 {
+  width: 10%;
+  height: 14%;
+  position:absolute;
+  left: 10%;
+  top: 10%;
+}
+
+
+</style>
+
+<div class="container">
+    <div class="col-lg-8 pb-5">
+        <form class="row" method="POST"> {% csrf_token %}
+
+            <div class="col-md-10">
+                <div class="form-group">
+
+
+                    <label for="account-fn">Quiz title</label>
+                    <input class="form-control" type="text" id="account-fn" required="" name="name">
+
+
+                    <label for="account-d">Quiz description</label>
+                    <textarea class="form-control" name="description" id="account-d" required=""></textarea>
+
+
+                    <label for="account-category">Quiz category</label>
+                    <select class="form-control" id="account-category" name="category">
+                        <option value="Java">Java</option>
+                        <option value="C/C++">C/C++</option>
+                        <option value="Python">Python</option>
+                        <option value="Haskell">Haskell</option>
+                        <option value="CSS">CSS</option>
+                        <option value="HTML">HTML</option>
+                        <option value="JavaScript">JavScript</option>
+                        <option value="VHDL">VHDL</option>
+                    </select>
+
+                    <label for="account-fn">Number of questions</label>
+                    <input class="form-control" type="text" id="account-fn" required="" name="questions_count">
+
+
+
+
+                </div>
+            </div>
+
+            <button class="myButton" type="submit">Create quiz</button>
+        </form>
+    </div>
+    <img class="imagine" src="./../../static/isproject/strategist.png"/>
+
+</div>
+
+<script>
+
+ var $txtBox = $('#account-d');
+
+$txtBox.keyup(function(){
+    $('p.msg').text($txtBox.val());
+}).trigger('keyup')
+
+
+
+</script>
+
+
+{% endblock content %}

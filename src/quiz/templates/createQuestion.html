@@ -1,0 +1,135 @@
+{% extends 'base2.html' %}
+{% include 'account/comp_css.html' %}
+
+{% block content %}
+<style>
+    .container  {
+
+	  flex-shrink: 0;
+	  flex-grow: 1;
+	  display: flex;
+	  flex-direction: column;
+	  min-height: 100vh;
+	  justify-content: center;
+	  align-items: center
+
+}
+
+.wizard{
+ margin-top:50px;
+
+}
+
+.myButton {
+	box-shadow: 3px 4px 0px 0px #7c0da8;
+	background:linear-gradient(to bottom, #79bbff 5%, #e800f0 100%);
+	background-color:#79bbff;
+	border-radius:5px;
+	border:1px solid #e4cbf2;
+	display:flex;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	font-weight:bold;
+	padding:12px 44px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #c817eb;
+	position: relative;
+	left: 15%;
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #e800f0 5%, #79bbff 100%);
+	background-color:#e800f0;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+.imagine {
+  width: 30%;
+  position:absolute;
+  left: 70%;
+}
+
+.imagine2 {
+  width: 10%;
+  height: 14%;
+  position:absolute;
+  left: 10%;
+  top: 10%;
+}
+
+
+</style>
+
+<div class="container">
+    <div class="col-lg-8 pb-5">
+        <form class="row" method="POST"> {% csrf_token %}
+
+            <div class="col-md-10">
+                <div class="form-group">
+
+
+
+
+
+                    <label for="account-question">Question</label>
+                    <textarea class="form-control" name="question" id="account-question" required=""></textarea>
+
+                    <label for="account-answ1">Answer A</label>
+                    <input class="form-control" type="text" id="account-answ1" required="" name="answer_one">
+
+                    <label for="account-answ2">Answer B</label>
+                    <input class="form-control" type="text" id="account-answ2" required="" name="answer_two">
+
+                    <label for="account-answ3">Answer C</label>
+                    <input class="form-control" type="text" id="account-answ3" required="" name="answer_three">
+
+                    <label for="account-answ4">Answer D</label>
+                    <input class="form-control" type="text" id="account-answ4" required="" name="answer_four">
+
+
+                    <label for="account-correct">Correct answer</label>
+                    <select class="form-control" id="account-correct" name="correct_answer">
+                        <option value="A">Answer A</option>
+                        <option value="B">Answer B</option>
+                        <option value="C">Answer C</option>
+                        <option value="D">Answer D</option>
+
+                    </select>
+
+
+
+
+
+
+
+
+                </div>
+            </div>
+
+            <button class="myButton" type="submit">Create question</button>
+
+            <a href="{% url 'home' %}"  class="myButton"  type="submit">Finish quiz</a>
+        </form>
+    </div>
+    <img class="imagine" src="./../../../static/isproject/strategist.png"/>
+
+</div>
+
+<script>
+
+ var $txtBox = $('#account-d');
+
+$txtBox.keyup(function(){
+    $('p.msg').text($txtBox.val());
+}).trigger('keyup')
+
+
+
+</script>
+
+
+{% endblock content %}
