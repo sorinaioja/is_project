@@ -24,6 +24,6 @@ class JobFormApplication(forms.ModelForm):
             'name',
             'email',
             'phone_number',
-            'applying_position',
             'start_date',
+            'display_CV',
         ]
