@@ -33,6 +33,8 @@ INSTALLED_APPS = [
     'job',
     'question',
     'forum',
+    'quiz',
+    'crispy_forms',
 
 ]
 
