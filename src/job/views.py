@@ -1,5 +1,7 @@
+from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.core.files.storage import FileSystemStorage
+from django.views.decorators.http import require_http_methods
 
 from account.models import Company
 from .forms import JobForm, JobFormApplication
@@ -86,3 +88,12 @@ def delete_jobs(request, pk):
     obj.delete();
     return redirect("home")
     return render(request, 'job/view_jobs.html')
+
+
+@require_http_methods(['GET'])
+def search(request):
+    q = request.GET.get('q')
+    if q:
+        jobs = Job.objects.filter(location=q)
+        return render(request, 'job/job_filterr.html', {'jobs':jobs, 'query':q})
+    return HttpResponse('Please submit a search term.')

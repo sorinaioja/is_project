@@ -3,7 +3,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-from job.views import job_create_view, present_job_view, delete_jobs, user_job_view, job_application_view
+from job.views import job_create_view, present_job_view, delete_jobs, user_job_view, job_application_view, search
 from personal.views import (home_screen_view)
 from account.views import register_view_Applicant,present_companies_view
 from chat.views import (index)
@@ -91,6 +91,9 @@ urlpatterns = [
     path('viewQuizzez/',present_quizzes_view, name = 'tests'),
     path('quiz/<int:pk>/', take_quiz_view, name='quiz'),
     path('finish/<int:score>/<int:total>', finish_view, name='finish'),
+
+    path('job_filter', search, name='job_filter'),
+
 ]
 
 if settings.DEBUG:
