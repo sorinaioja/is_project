@@ -154,7 +154,7 @@ background-color:#ccccff;
     </ul>
 
 <!--    <a href="% url 'job_application' %"><button onclick=""  type="button" class="btn btn-primary" style="float: right;">Apply</button></a>-->
-    <button  onclick="" type="button" class="btn myButton" > <a href="{% url 'job_application' %}">Apply</a></button>
+    <button  onclick="" type="button" class="btn myButton" > <a href="{% url 'job_application' pk=job.pk %}">Apply</a></button>
 </div>
     {% endfor %}
 

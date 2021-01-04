@@ -1,16 +1,14 @@
 {% extends 'chat/base.html' %}
 
-{% include 'account/comp_css.html' %}
-
-
 {% block content %}
+
+{% include 'account/comp_css.html' %}
 
 <style>
 
 body{
 background-color:#ccccff;
 }
-
 .accordion {
 
   color: #444;
@@ -52,18 +50,14 @@ background-color:#ccccff;
   flex-direction: column;
   min-height: 80vh;
 }
-
-.h2{
-margin-top:20px;
-}
-.container1 {
+.container1  {
 
   position: absolute;
   top: 10%;
   left: 24%;
   height: 100%;
   width: 52%;
-  margin-top:50px;
+  margin-top:90px;
   min-height: 80vh;
   flex-direction: column;
 }
@@ -82,19 +76,25 @@ margin-top:20px;
 }
 
 
+
+
 </style>
 
-   <div class="container">
+<div class="container1">
 
-<h2>You searched for jobs in this location: <strong>{{ query }}</strong></h2>
+       <div class="author-card pb-3">
+                <div class="author-card-profile">
+                    <div class="author-card-details">
+                        <h3 class="author-card-name text-lg">{{request.user.company.name}}</h3><span class="author-card-position"><h3>Jobs</h3></span>
 
-{% if jobs %}
-<h3>Found {{ jobs|length }} job {{ jobs|pluralize }}.</h3>
-
-
+                    </div>
+                </div>
+       </div>
+</div>
+<div class="container">
     {% for job in jobs %}
 <button class="accordion author-card1">
-    <h5 class="author-card-name text-lg">{{job.title}}  by <a href= "{% url 'company_detail' pk=job.company.pk %}">{{job.company}}</a></h5><span class="author-card-position"><h6>{{job.location}}, {{job.work_time}}</h6></span>
+    <h5 class="author-card-name text-lg">{{job.title}}</h5><span class="author-card-position"><h6>{{job.location}}, {{job.work_time}}</h6></span>
 </button>
 <div class="panel">
     <ul>
@@ -110,15 +110,10 @@ margin-top:20px;
         </li>
     </ul>
 
-    <a href="{% url 'job_application'  pk=job.pk%}"><button  type="button" class="btn btn-primary" style="float: right;">Apply</button></a>
+    <a href="{% url 'job_delete' pk=job.pk %}"><button onclick="myFunction();"  type="button" class="btn btn-primary" style="float: right;">Delete</button></a>
 </div>
     {% endfor %}
 
-</div>
-
-{% else %}
-<h3>Sorry, no jobs found in this location.</h3>
-{% endif %}
 </div>
 
 <script>
@@ -138,9 +133,13 @@ for (i = 0; i < acc.length; i++) {
   });
 }
 
+function myFunction(){
+    alert("Job will be deleted!");
+};
+
 
 
 </script>
 
+{% endblock content %}
 
- {% endblock content %}
