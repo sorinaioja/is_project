@@ -20,3 +20,5 @@ class JobApplication(models.Model):
     phone_number = models.CharField(max_length=10, blank=True)
     start_date = models.TextField(blank=True, null=True)
     display_CV = models.FileField()
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, null=True)
+    job = models.ForeignKey(Job, on_delete=models.CASCADE, null=True)

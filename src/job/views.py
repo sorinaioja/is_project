@@ -40,12 +40,14 @@ def job_create_view(request):
     return render(request, "job/job_detail.html", context)
 
 
-def job_application_view(request):
+def job_application_view(request, pk):
+
     if request.POST:
 
         j_form = JobFormApplication(request.POST, request.FILES)
 
         if j_form.is_valid():
+
             name = request.POST.get('name')
             email = request.POST.get('email')
             phone_number = request.POST.get('phone_number')
@@ -53,16 +55,22 @@ def job_application_view(request):
             display_CV = request.FILES['display_CV']
             print(display_CV.name)
             print(display_CV.size)
+            job = get_object_or_404(Job, pk=pk)
+            company = job.company
+            print(job.title)
             fs = FileSystemStorage()
             fs.save(display_CV.name, display_CV)
             j_form.save(commit=False)
-            j_form = JobApplication.objects.create(name=name, email=email, phone_number=phone_number, start_date=start_date, display_CV=display_CV)
+            j_form = JobApplication.objects.create(name=name, email=email, phone_number=phone_number, start_date=start_date, display_CV=display_CV, company=company, job=job)
             j_form.save()
             return redirect("home")
     else:
         j_form = JobForm()
+
     context = {
-        'j_form': j_form
+        'j_form': j_form,
+        'jobpk': get_object_or_404(Job, pk=pk),
+
     }
     return render(request, "job/job_application.html", context)
 
@@ -71,6 +79,7 @@ def present_job_view(request):
     context = {
         'jobs': Job.objects.all(),
         'Job': Job,
+
     }
     return render(request, 'job/view_jobs.html', context)
 
@@ -85,7 +94,7 @@ def user_job_view(request):
 
 def delete_jobs(request, pk):
     obj = get_object_or_404(Job, pk=pk)
-    obj.delete();
+    obj.delete()
     return redirect("home")
     return render(request, 'job/view_jobs.html')
 
