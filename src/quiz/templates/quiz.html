@@ -73,11 +73,12 @@
 		<div class="col-mx-auto">
 			<div class="card bg-white text-dark" style="width: 40rem;">
 			  	<div class="card-body">
+
 			    	<center><h5 class="card-title">{{ forloop.counter }}.{{ question.question | linebreaksbr }}</h5></center>
 
 					{% load crispy_forms_tags %}
 
-					<center>{{ field | as_crispy_field | safe }}</center>
+					<center>{{ field | as_crispy_field | safe }} </center>
 			 	</div>
 			</div>
 		</div>

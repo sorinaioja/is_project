@@ -1,0 +1,146 @@
+{% extends 'chat/base.html' %}
+
+{% include 'account/comp_css.html' %}
+
+
+{% block content %}
+
+<style>
+
+body{
+background-color:#ccccff;
+}
+
+.accordion {
+
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+  margin-top: 5px;
+}
+
+.active, .accordion:hover {
+  background-color: #8080ff;
+  border:none;
+}
+
+.panel {
+  padding: 0 18px;
+  background-color:white;
+  max-height: 0;
+  overflow-y: hidden;
+  transition: max-height 0.2s ease-out;
+  border-radius:15px;
+  }
+
+.container  {
+
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 55%;
+  margin-top:270px;
+
+  display: flex;
+  flex-direction: column;
+  min-height: 80vh;
+}
+
+.h2{
+margin-top:20px;
+}
+.container1 {
+
+  position: absolute;
+  top: 10%;
+  left: 24%;
+  height: 100%;
+  width: 52%;
+  margin-top:50px;
+  min-height: 80vh;
+  flex-direction: column;
+}
+
+.author-card1{
+
+   background-color:#99bbff;
+   border: none;
+    box-shadow: 5px -5px 5px  rgba(0,0,0,0.3);
+  -moz-box-shadow: 5px -5px 5px  rgba(0,0,0,0.3);
+  -webkit-box-shadow: 5px -5px 5px  rgba(0,0,0,0.3);
+  -o-box-shadow: 5px -5px 5px  rgba(0,0,0,0.3);
+  border-radius:25px;
+   opacity: 0.9;
+   color: black;
+}
+
+
+</style>
+
+   <div class="container">
+
+<h2>You searched for jobs in this location: <strong>{{ query }}</strong></h2>
+
+{% if jobs %}
+<h3>Found {{ jobs|length }} job {{ jobs|pluralize }}.</h3>
+
+
+    {% for job in jobs %}
+<button class="accordion author-card1">
+    <h5 class="author-card-name text-lg">{{job.title}}</h5><span class="author-card-position"><h6>{{job.location}}, {{job.work_time}}</h6></span>
+</button>
+<div class="panel">
+    <ul>
+
+        <li><h5>Job description</h5>
+        <p class="msg">{{job.job_description|linebreaks }}</p>
+        </li>
+        <li><h5>Qualifications</h5>
+            <p>{{job.qualifications|linebreaks}}</p>
+        </li>
+        <li><h5>Benefits</h5>
+            <p>{{job.benefits|linebreaks}}</p>
+        </li>
+    </ul>
+
+    <a href="{% url 'job_application' %}"><button  type="button" class="btn btn-primary" style="float: right;">Apply</button></a>
+</div>
+    {% endfor %}
+
+</div>
+
+{% else %}
+<h3>Sorry, no jobs found in this location.</h3>
+{% endif %}
+</div>
+
+<script>
+
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    }
+  });
+}
+
+
+
+</script>
+
+
+ {% endblock content %}

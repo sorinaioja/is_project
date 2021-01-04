@@ -9,8 +9,8 @@
 			<a class="logo" href="{% url 'companies' %}"> <img src = ' ../../../static/isproject/CARRY-ER.png' width="70" height="70" ></a>
 			<a class="btn btn-outline-black" href="{% url 'index' %}">Home</a>
 		</h5>
-		<form class="search-bar justify-content-start">
-			<input type="text" class="form-control" name="q" id="id_q_large" placeholder="Search...">
+		<form class="search-bar justify-content-start"  type="get" action="{% url 'job_filter' %}" accept-charset="utf-8">
+			<input type="text" class="form-control" name="q" id="id_q_large" placeholder="Search job by location">
 		</form>
 
 		<div class="d-flex flex-row-reverse flex-grow-1">
