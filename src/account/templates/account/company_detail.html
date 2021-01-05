@@ -133,10 +133,11 @@
                 <br>
                 {{comment_form.}}
                 <label>Name</label>
-                <input class="form-control" type="text" name="name" value="{{request.comment.name}}" required >
+                <input class="form-control" type="text" name="name"  required="" >
+
                 <br>
                 <label>Comment</label>
-                <input class="form-control"  type="text" id="comment-body" name="body" value="{{request.comment.body}}" required  >
+                <input class="form-control"  type="text"  name="body" required="" >
                 <!--<textarea class="form-control" rows="3"></textarea> -->
               </div>
               <button type="submit" class="btn btn-primary">Add comment</button>
@@ -144,10 +145,11 @@
           </div>
         </div>
       </div>
+
+      <br>
+      <br>
     <!-- Sidebar Widgets Column -->
       <div class="col-md-4">
-
-
 
         <!-- Categories Widget -->
         <div class="card my-4 ">

@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserChangeForm
+from datetime import date
 
 from .forms import RegistrationForm, RegistrationFormApplicant, RegistrationFormCompany, AccountAuthenticationForm, UserUpdateForm, CompanyUpdateForm, ApplicantUpdateForm, CommentForm
 
@@ -236,20 +237,22 @@ def user_profile_update(request):
 
 def one_company_detail(request,pk):
     comp = get_object_or_404(Company, pk=pk)
-    return render(request, 'account/company_detail.html', {'company': comp})
-
-
-def add_comment_view(request,pk):
-    comp = get_object_or_404(Company, pk=pk)
-    if request.method == 'POST':
-        comment_form = CommentForm(request.POST)
+    print("intra")
+    comment_form = CommentForm(request.POST)
+    if request.POST:
         if comment_form.is_valid():
+            name = request.POST.get('name')
+            body = request.POST.get('body')
+            date_added = date.today()
+            print("intra")
+            comment_form.save(commit=False)
+            comment_form = Comment.objects.create(company=comp, name=name, body=body, date_added=date_added)
             comment_form.save()
-            return redirect("company")
     context = {
-        'comment_form': comment_form
+        'comment_form': comment_form,
+        'company': comp
     }
-    return render(request, 'account/company_detail.html', {'company': comp})
+    return render(request, 'account/company_detail.html', context)
 
 
 
