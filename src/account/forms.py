@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import ModelForm
 from django.contrib.auth import authenticate
-from .models import Account, Applicant, Company
+from .models import Account, Applicant, Company, Comment
 
 
 class RegistrationForm(UserCreationForm):
@@ -139,4 +139,12 @@ class ApplicantUpdateForm(forms.ModelForm):
         ]
 
 
+class CommentForm(forms.ModelForm):
+    name = forms.CharField(max_length=100, help_text='Name')
+    body = forms.CharField(max_length=500, help_text='Comment')
 
+    class Meta:
+        model = Comment
+        fields = ['name',
+                  'body'
+                  ]

@@ -3,6 +3,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from .models import Account
 from .models import Company
+from .models import Comment
 
 
 
@@ -19,3 +20,4 @@ class AccountAdmin(UserAdmin):
 
 admin.site.register(Account, AccountAdmin)
 admin.site.register(Company)
+admin.site.register(Comment)

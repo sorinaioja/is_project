@@ -4,9 +4,11 @@ from django.http import HttpResponse
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserChangeForm
 
-from .forms import RegistrationForm, RegistrationFormApplicant, RegistrationFormCompany, AccountAuthenticationForm, UserUpdateForm, CompanyUpdateForm, ApplicantUpdateForm
+from .forms import RegistrationForm, RegistrationFormApplicant, RegistrationFormCompany, AccountAuthenticationForm, UserUpdateForm, CompanyUpdateForm, ApplicantUpdateForm, CommentForm
 
-from account.models import Account, Company, Applicant
+from account.models import Account, Company, Applicant, Comment
+from job.models import Job
+
 from django.shortcuts import render, get_object_or_404
 
 
@@ -237,6 +239,17 @@ def one_company_detail(request,pk):
     return render(request, 'account/company_detail.html', {'company': comp})
 
 
+def add_comment_view(request,pk):
+    comp = get_object_or_404(Company, pk=pk)
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            comment_form.save()
+            return redirect("company")
+    context = {
+        'comment_form': comment_form
+    }
+    return render(request, 'account/company_detail.html', {'company': comp})
 
 
 

@@ -7,7 +7,7 @@ from django.db import models
 
 
 class Quiz(models.Model):
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    company = models.ForeignKey(Company, related_name="quiz", on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     category = models.CharField(max_length=20)
     questions_count = models.IntegerField(default=0)
