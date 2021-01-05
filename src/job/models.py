@@ -11,7 +11,7 @@ class Job(models.Model):
     job_description = models.TextField(blank=True, null=True)
     qualifications = models.TextField(blank=True, null=True)
     benefits = models.TextField(blank=True, null=True)
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    company = models.ForeignKey(Company, related_name="jobs", on_delete=models.CASCADE)
 
 
 class JobApplication(models.Model):

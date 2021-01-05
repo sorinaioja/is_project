@@ -130,11 +130,14 @@ def create_user_profile(sender, instance, created, **kwargs):
 #     elif instance.is_company:
 #         instance.company.save()
 
-# class Company(models.Model):
-# 	name = models.CharField(max_length=100, unique=True)
-# 	about = models.TextField(max_length=500)
-# 	email = models.EmailField(verbose_name="email", max_length=60, unique=True)
-# 	field = models.CharField(max_length=50)
-#
-# 	def __str__(self):
-# 		return self.name
+
+class Comment(models.Model):
+    company = models.ForeignKey(Company, related_name="comments", on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+    body = models.CharField(max_length=500)
+    date_added = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.company.name
+
+
