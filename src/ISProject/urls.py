@@ -34,7 +34,6 @@ from account.views import (
     company_profile_update,
     user_profile_update,
     one_company_detail,
-    add_comment_view,
 )
 
 
@@ -85,7 +84,6 @@ urlpatterns = [
          name='password_reset_complete'),
 
     path('company/<int:pk>/', views.one_company_detail, name='company_detail'),
-    path('company/<int:pk>/', views.add_comment_view, name='comment'),
     path('questions/', questions_view, name='questions'),
 
     path('createQuiz/', quiz_create_view, name='createQuiz'),
