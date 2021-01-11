@@ -94,6 +94,7 @@ background-color:#ccccff;
 </div>
 <div class="container">
     {% for job in jobs %}
+    {% if job.company.name == request.user.company.name %}
 <button class="accordion author-card1">
     <h5 class="author-card-name text-lg">{{job.title}}</h5><span class="author-card-position"><h6>{{job.location}}, {{job.work_time}}</h6></span>
 </button>
@@ -113,6 +114,7 @@ background-color:#ccccff;
 
     <a href="{% url 'job_delete' pk=job.pk %}"><button onclick="myFunction();"  type="button" class="btn btn-primary" style="float: right;">Delete</button></a>
 </div>
+    {% endif %}
     {% endfor %}
 
 </div>
