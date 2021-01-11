@@ -70,7 +70,8 @@
 
 
                         <label for="account-about">About</label>
-                        <input class="form-control"  name="about" type="text" id="account-about" value="{{request.user.company.about}}" required="">
+                         <textarea class="form-control" name="about"  id="account-about" value="{{request.user.company.about}}" required="">{{request.user.company.about}} </textarea>
+
 
                          <label for="account-about">Link</label>
                         <input class="form-control" name="link" type="text" id="account-link"  required=""  value="{{request.user.company.link}}">

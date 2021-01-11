@@ -59,11 +59,15 @@ margin:0.4em auto;
       <a href="{% url 'companies' %}" class="button1" class="w3-animate-top w3-center">Companies</a>
     <a href="{% url 'questions' %}" class="button1"  class="w3-animate-top w3-center ">Interview  </a><br>
 
-      <a href="{% url 'tests' %}" class="button1"  class="w3-animate-top w3-center ">Tests</a>
-      <a href="{% url 'results' %}" class="button1"  class="w3-animate-top w3-center ">Tests Results</a>
 
+      {% endif %}
+       {% if request.user.is_applicant %}
+            <a href="{% url 'tests' %}" class="button1"  class="w3-animate-top w3-center ">Tests</a>
+          <a href="{% url 'results' %}" class="button1"  class="w3-animate-top w3-center ">Tests Results</a>
 
     {% endif %}
+
+
 
 
 

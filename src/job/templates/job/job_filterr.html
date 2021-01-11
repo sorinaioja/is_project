@@ -46,7 +46,7 @@ background-color:#ccccff;
   left: 0;
   height: 100%;
   width: 55%;
-  margin-top:270px;
+  margin-top:100px;
 
   display: flex;
   flex-direction: column;
@@ -117,7 +117,7 @@ margin-top:20px;
 </div>
 
 {% else %}
-<h3>Sorry, no jobs found in this location.</h3>
+<h3>Sorry, no jobs found in {{ query }}</h3>
 {% endif %}
 </div>
 
