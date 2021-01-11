@@ -13,7 +13,6 @@ class QuizForm(forms.ModelForm):
         fields = [
             'name',
             'questions_count',
-           # 'question_count',
             'description',
 
         ]
@@ -36,10 +35,11 @@ class QuestionForm(forms.ModelForm):
 
 class AnswerQuestionForm(forms.Form):
     def __init__(self, *args, **kwargs):
-        questions = kwargs.pop('questions')  # pop questions array from kwargs
+        questions = kwargs.pop('questions')
         super().__init__(*args, **kwargs)
+
         if questions:
-            for question in questions:  # add a form field for each question
+            for question in questions:
                 CHOICES = (
                     ('A', question.answer_one),
                     ('B', question.answer_two),
@@ -52,6 +52,6 @@ class AnswerQuestionForm(forms.Form):
         self.helper.form_show_labels = False
 
 
-    def answers(self):  # return questions and answers for result processing
-        for name, question in self.cleaned_data.items():
-            yield (name, question)
+    def answers(self):
+        for question in self.cleaned_data.items():
+            yield (question)

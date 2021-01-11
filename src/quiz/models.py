@@ -7,6 +7,7 @@ from django.db import models
 
 
 class Quiz(models.Model):
+
     company = models.ForeignKey(Company, related_name="quiz", on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     category = models.CharField(max_length=20)
@@ -30,6 +31,7 @@ ANSWER_CHOICES = [
 
 
 class Question(models.Model):
+
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
     question = models.CharField(max_length=1000)
     answer_one = models.CharField(max_length=200)
@@ -43,11 +45,11 @@ class Question(models.Model):
 
 
 class UserAnswer(models.Model):
+
     user = models.ForeignKey(Applicant, on_delete=models.CASCADE)
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE,default=1)
     score = models.IntegerField(default=0)
     response_time = models.DateTimeField(auto_now_add=True, null=True, blank=True)
-
 
 
     def __str__(self):
